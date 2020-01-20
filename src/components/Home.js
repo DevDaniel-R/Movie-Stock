@@ -1,4 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { API_URL,
+   API_KEY,
+   API_BASE_URL,
+   POSTER_SIZE,
+   BACKDROP_SIZE} 
+   from '../config';
 
 //import Components
 import HeroImage from './elements/HeroImage';
@@ -8,16 +14,47 @@ import MovieThumb from './elements/MovieThumb';
 import LoadMoreBtn from './elements/LoadMoreBtn';
 import Spinner from './elements/Spinner';
 
-const Home = () => (
-  <>
-  <HeroImage />
-  <SearchBar />
-  <Grid />
-  <MovieThumb />
-  <LoadMoreBtn />
-  <Spinner />  
+const Home = () => {
+  const [state, setState] = useState({ movies: [] });
+  const [loading, setLoading] = useStatic(false);
+  const [error, setError] = usestate(false);
 
-  </>
-)
+  console.log(state);
+
+  const fetchMovies = async endpoint => {
+    setError(false);
+    setLoading(true);
+
+    try {
+      const result = await (await fetch(endpoint)).json();
+      setState(prev => ({
+        ...prev,
+        movies: [...result.results],
+        heroImage: prev.heroImage ||result.results[0],
+        currentPage: result.page,
+        totalPages: result.total_pages,
+      }));
+
+
+    } catch (error) {
+      setError(true);
+    }
+    setLoading(false);
+
+  }
+
+
+  return (
+
+    <>
+    <HeroImage />
+    <SearchBar />
+    <Grid />
+    <MovieThumb />
+    <Spinner />  
+    <LoadMoreBtn />
+    </>
+  )
+}
 
 export default Home;
