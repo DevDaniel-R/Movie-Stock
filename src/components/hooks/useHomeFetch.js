@@ -32,6 +32,8 @@ export const useHomeFetch = () => {
 
   }
 
+  
+
   useEffect(() => {
     fetchMovies(`${API_URL}movie/popular?api_key=${API_KEY}`)
   }, [])
