@@ -13,14 +13,13 @@ import Grid from './elements/Grid';
 import MovieThumb from './elements/MovieThumb';
 import LoadMoreBtn from './elements/LoadMoreBtn';
 import Spinner from './elements/Spinner';
-import { useHomeFetch } from './hooks/useHomeFetch';
 
 //Custom Hook
+import { useHomeFetch } from './hooks/useHomeFetch';
+
 const Home = () => {
   const [{ state, loading, error }, fetchMovies] = useHomeFetch();
   console.log(state);
-
-
   return (
 
     <>

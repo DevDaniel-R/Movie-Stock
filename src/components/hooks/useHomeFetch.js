@@ -6,15 +6,12 @@ export const useHomeFetch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  console.log(state);
-
   const fetchMovies = async endpoint => {
     setError(false);
     setLoading(true);
 
     try {
       const result = await (await fetch(endpoint)).json();
-      console.log(result)
       setState(prev => ({
         ...prev,
         movies: [...result.results],
@@ -32,9 +29,9 @@ export const useHomeFetch = () => {
 
   }
 
-  
-
   useEffect(() => {
     fetchMovies(`${API_URL}movie/popular?api_key=${API_KEY}`)
   }, [])
+
+  return [{ state, loading, error }, fetchMovies];
 }
