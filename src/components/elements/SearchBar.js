@@ -14,7 +14,9 @@ const SearchBar = ({ callback }) => {
     const { value } = event.target;
     setState(value);
 
-    
+  timeOut.current = setTimeout(() => {
+    callback(value);
+  }, 500);    
   }
 
  return (
@@ -32,6 +34,5 @@ const SearchBar = ({ callback }) => {
    </StyledSearchBar>
  )
 }
-  <div>SearchBar</div>
 
 export default SearchBar;
