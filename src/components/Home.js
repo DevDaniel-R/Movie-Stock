@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  API_URL,
-  API_KEY,
   POPULAR_BASE_URL,
   SEARCH_BASE_URL,
    POSTER_SIZE,
